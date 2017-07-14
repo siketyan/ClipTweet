@@ -27,7 +27,8 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Width="72" Height="52" Margin="2,0">
-                            <Image RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform" />
+                            <Image RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform"
+                                   Source="{Binding Source}" />
                             <Button Width="15" Height="15" Cursor="Hand"
                                     VerticalAlignment="Top" HorizontalAlignment="Right">
                                 <Button.Template>
@@ -55,13 +56,6 @@
                         </Ellipse>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-                
-                <Ellipse Width="48" Height="48" Margin="3,0"
-                         Stroke="Transparent" StrokeThickness="2">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="https://pbs.twimg.com/profile_images/880683313861722112/uX5DRTeJ_bigger.jpg" />
-                    </Ellipse.Fill>
-                </Ellipse>
             </ListBox>
             <DockPanel Margin="15,5,15,10">
                 <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
