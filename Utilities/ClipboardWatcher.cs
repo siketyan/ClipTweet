@@ -21,7 +21,7 @@ namespace ClipTweet.Utilities
 
         HwndSource hwndSource = null;
         
-        public event EventHandler DrawClipboard;
+        public event EventHandler ClipboardChanged;
         
         public ClipboardWatcher(IntPtr handle)
         {
@@ -36,7 +36,7 @@ namespace ClipTweet.Utilities
             if (msg == WM_DRAWCLIPBOARD)
             {
                 SendMessage(this.nextHandle, msg, wParam, lParam);
-                RaiseDrawClipboard();
+                RaiseClipboardChanged();
                 handled = true;
             }
             else if (msg == WM_CHANGECBCHAIN)
@@ -55,9 +55,9 @@ namespace ClipTweet.Utilities
             return IntPtr.Zero;
         }
 
-        private void RaiseDrawClipboard()
+        private void RaiseClipboardChanged()
         {
-            DrawClipboard?.Invoke(this, EventArgs.Empty);
+            ClipboardChanged?.Invoke(this, EventArgs.Empty);
         }
         
         public void Dispose()

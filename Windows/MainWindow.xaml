@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" Height="300" Width="321" Topmost="True"
-        BorderBrush="#39F" BorderThickness="1" ResizeMode="NoResize">
+        BorderBrush="#39F" BorderThickness="1" ResizeMode="NoResize"
+        IsHitTestVisible="False" Loaded="Init">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="32" CornerRadius="3" GlassFrameThickness="1"
                       ResizeBorderThickness="8" UseAeroCaptionButtons="False" />
@@ -76,5 +77,12 @@
                 </Grid>
             </DockPanel>
         </DockPanel>
+
+        <Grid x:Name="splashScreen" Background="#39F">
+            <StackPanel VerticalAlignment="Center">
+                <Label Style="{StaticResource SplashScreenTextStyle}" FontSize="28">ClipTweet</Label>
+                <Label Style="{StaticResource SplashScreenTextStyle}" FontSize="14">Initializing...</Label>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

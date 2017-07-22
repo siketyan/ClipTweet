@@ -1,4 +1,9 @@
-﻿using System.Windows;
+﻿using ClipTweet.Utilities;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Interop;
 
 namespace ClipTweet.Windows
 {
@@ -7,14 +12,32 @@ namespace ClipTweet.Windows
     /// </summary>
     public partial class MainWindow : Window
     {
+        ClipboardWatcher watcher;
+
         public MainWindow()
         {
             InitializeComponent();
+            ShowWindow();
         }
 
-        private void CloseWindow(object sender, RoutedEventArgs e)
+        private void Init(object sender, RoutedEventArgs e)
         {
-            Close();
+            this.watcher = new ClipboardWatcher(new WindowInteropHelper(this).Handle);
+            this.watcher.ClipboardChanged += new EventHandler(OnClipboardChanged);
+            this.splashScreen.Visibility = Visibility.Collapsed;
+            CloseWindow();
+        }
+
+        private void ShowWindow()
+        {
+            this.IsHitTestVisible = true;
+            this.Visibility = Visibility.Visible;
+        }
+
+        private void CloseWindow(object sender = null, RoutedEventArgs e = null)
+        {
+            this.IsHitTestVisible = false;
+            this.Visibility = Visibility.Hidden;
         }
 
         private void OnTextFocused(object sender, RoutedEventArgs e)
@@ -26,6 +49,11 @@ namespace ClipTweet.Windows
         {
             if (this.text.Text == "")
                 this.placeHolder.Visibility = Visibility.Visible;
+        }
+
+        private void OnClipboardChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("!");
         }
     }
 }
