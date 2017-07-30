@@ -15,11 +15,10 @@
 
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="FontFamily" Value="#Material Icons" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Label FontFamily="Material Icons" FontSize="18"
+                    <Label FontFamily="./#Material Icons" FontSize="18"
                            Foreground="#FFF" Content="{TemplateBinding Content}"
                            Background="{TemplateBinding Background}"
                            VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
