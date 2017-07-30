@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="Objects\Account.cs" />
     <Compile Include="Objects\Image.cs" />
+    <Compile Include="Utilities\BitmapSourceUtility.cs" />
     <Compile Include="Utilities\ClipboardWatcher.cs" />
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

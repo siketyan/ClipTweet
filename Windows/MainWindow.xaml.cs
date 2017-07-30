@@ -59,9 +59,9 @@ namespace ClipTweet.Windows
         {
             if (Clipboard.ContainsImage())
             {
-                if (this.Images.Where(i => i.Source.Equals(Clipboard.GetImage())).Count() != 0)
+                if (this.Images.Where(i => i.Equals(Clipboard.GetImage())).Count() != 0)
                 {
-                    MessageBox.Show("Duplicate");
+                    return;
                 }
 
                 ShowWindow();
