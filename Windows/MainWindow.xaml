@@ -15,13 +15,13 @@
         <DockPanel>
             <DockPanel DockPanel.Dock="Top" LastChildFill="False" Background="#3399FF" Height="32">
                 <Label Foreground="#FFF" FontSize="15" Margin="7,1">ClipTweet</Label>
-                <Button DockPanel.Dock="Right" Width="32"
-                        Style="{StaticResource WindowCaptionButtonStyle}"></Button>
                 <Button DockPanel.Dock="Right" Width="32" Click="CloseWindow"
+                        Style="{StaticResource WindowCaptionButtonStyle}"></Button>
+                <Button DockPanel.Dock="Right" Width="32"
                         Style="{StaticResource WindowCaptionButtonStyle}"></Button>
             </DockPanel>
             <ListBox DockPanel.Dock="Top" Height="64" BorderThickness="0"
-                     Background="#EEE" Padding="5"
+                     Background="#EEE" Padding="5" ItemsSource="{Binding Images}"
                      ItemContainerStyle="{StaticResource ListBoxDisableSelectStyle}"
                      ItemsPanel="{StaticResource ListBoxHorizontalTemplate}"
                      ScrollViewer.HorizontalScrollBarVisibility="Hidden">

@@ -1,7 +1,8 @@
-﻿using ClipTweet.Utilities;
+﻿using ClipTweet.Objects;
+using ClipTweet.Utilities;
 using System;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Interop;
 
@@ -12,12 +13,15 @@ namespace ClipTweet.Windows
     /// </summary>
     public partial class MainWindow : Window
     {
-        ClipboardWatcher watcher;
+        public ObservableCollection<Image> Images { get; set; }
+        private ClipboardWatcher watcher;
 
         public MainWindow()
         {
             InitializeComponent();
-            ShowWindow();
+
+            this.Images = new ObservableCollection<Image>();
+            this.DataContext = this;
         }
 
         private void Init(object sender, RoutedEventArgs e)
@@ -53,7 +57,16 @@ namespace ClipTweet.Windows
 
         private void OnClipboardChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("!");
+            if (Clipboard.ContainsImage())
+            {
+                if (this.Images.Where(i => i.Source.Equals(Clipboard.GetImage())).Count() != 0)
+                {
+                    MessageBox.Show("Duplicate");
+                }
+
+                ShowWindow();
+                this.Images.Add(new Image(Clipboard.GetImage()));
+            }
         }
     }
 }
