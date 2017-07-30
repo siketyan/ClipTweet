@@ -30,8 +30,9 @@
                         <Grid Width="72" Height="52" Margin="2,0">
                             <Image RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform"
                                    Source="{Binding Source}" />
-                            <Button Width="15" Height="15" Cursor="Hand"
-                                    VerticalAlignment="Top" HorizontalAlignment="Right">
+                            <Button Width="15" Height="15" Cursor="Hand" Tag="{Binding Source}"
+                                    VerticalAlignment="Top" HorizontalAlignment="Right"
+                                    Click="DeleteImage">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Border Background="#333">

@@ -5,6 +5,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Interop;
+using System.Windows.Media.Imaging;
+
+using Controls = System.Windows.Controls;
 
 namespace ClipTweet.Windows
 {
@@ -30,6 +33,16 @@ namespace ClipTweet.Windows
             this.watcher.ClipboardChanged += new EventHandler(OnClipboardChanged);
             this.splashScreen.Visibility = Visibility.Collapsed;
             CloseWindow();
+        }
+        
+        private void DeleteImage(object sender, RoutedEventArgs e)
+        {
+            var image = (BitmapSource)((Controls.Button)sender).Tag;
+            this.Images.Remove(
+                this.Images.Where(
+                    i => i.Equals(image)
+                ).FirstOrDefault()
+            );
         }
 
         private void ShowWindow()
