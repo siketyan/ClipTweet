@@ -19,11 +19,11 @@ namespace ClipTweet.Windows
 
         private Settings settings;
         
-        public SettingsWindow(Settings s)
+        public SettingsWindow()
         {
             InitializeComponent();
 
-            this.settings = s;
+            this.settings = App.GetInstance().Settings;
             this.Accounts = new ObservableCollection<Account>();
 
             foreach (var account in this.settings.Accounts)

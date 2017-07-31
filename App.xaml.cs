@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using ClipTweet.Objects;
+using ClipTweet.Windows;
+using System.Windows;
 
 namespace ClipTweet
 {
@@ -7,5 +9,20 @@ namespace ClipTweet
     /// </summary>
     public partial class App : Application
     {
+        public Settings Settings { get; private set; }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            this.Settings = Settings.Open();
+
+            new MainWindow().Show();
+        }
+
+        public static App GetInstance()
+        {
+            return ((App)Current);
+        }
     }
 }

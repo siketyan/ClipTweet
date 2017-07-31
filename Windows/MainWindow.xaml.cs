@@ -2,7 +2,6 @@
 using ClipTweet.Utilities;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Interop;
@@ -27,7 +26,7 @@ namespace ClipTweet.Windows
         {
             InitializeComponent();
 
-            this.settings = Settings.Open();
+            this.settings = App.GetInstance().Settings;
             this.Images = new ObservableCollection<Image>();
             this.Accounts = new ObservableCollection<Account>();
             this.DataContext = this;
@@ -79,7 +78,7 @@ namespace ClipTweet.Windows
 
         private void ShowSettings(object sender, RoutedEventArgs e)
         {
-            var window = new SettingsWindow(this.settings)
+            var window = new SettingsWindow()
             {
                 Owner = this
             };
