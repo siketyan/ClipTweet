@@ -45,17 +45,25 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <ListBox DockPanel.Dock="Top" Height="60" BorderThickness="0" Padding="5,10,5,0"
+            <ListBox x:Name="accountsList" DockPanel.Dock="Top"
+                     Height="60" BorderThickness="0" Padding="5,10,5,0"
                      ItemContainerStyle="{StaticResource ListBoxDisableSelectStyle}"
-                     ItemsPanel="{StaticResource ListBoxHorizontalTemplate}">
+                     ItemsPanel="{StaticResource ListBoxHorizontalTemplate}"
+                     ItemsSource="{Binding Accounts}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Ellipse Width="48" Height="48" Margin="3,0" Cursor="Hand"
-                                 Stroke="{Binding RingColor}" StrokeThickness="2">
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding ImageUrl}" />
-                            </Ellipse.Fill>
-                        </Ellipse>
+                        <Button Cursor="Hand" Tag="{Binding Id}" Click="ActivateAccount">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Ellipse Width="48" Height="48" Margin="3,0"
+                                             Stroke="{Binding RingColor}" StrokeThickness="2">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{Binding ImageUrl}" />
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

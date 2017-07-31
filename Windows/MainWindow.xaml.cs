@@ -2,6 +2,7 @@
 using ClipTweet.Utilities;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Interop;
@@ -17,6 +18,7 @@ namespace ClipTweet.Windows
     public partial class MainWindow : Window
     {
         public ObservableCollection<Image> Images { get; set; }
+        public ObservableCollection<Account> Accounts { get; set; }
 
         private ClipboardWatcher watcher;
         private Settings settings;
@@ -27,7 +29,10 @@ namespace ClipTweet.Windows
 
             this.settings = Settings.Open();
             this.Images = new ObservableCollection<Image>();
+            this.Accounts = new ObservableCollection<Account>();
             this.DataContext = this;
+
+            LoadAccounts();
         }
 
         private void Init(object sender, RoutedEventArgs e)
@@ -48,6 +53,30 @@ namespace ClipTweet.Windows
             );
         }
 
+        private void LoadAccounts()
+        {
+            this.Accounts.Clear();
+
+            foreach (var account in this.settings.Accounts)
+            {
+                this.Accounts.Add(account);
+            }
+
+            if (this.Accounts.Where(a => a.IsActive).Count() == 0)
+            {
+                this.Accounts[0].Activate();
+            }
+        }
+
+        private void ActivateAccount(object sender, RoutedEventArgs e)
+        {
+            var id = (long)((Controls.Button)sender).Tag;
+            this.Accounts.Where(a => a.IsActive).FirstOrDefault().Deactivate();
+            this.Accounts.Where(a => a.Id == id).FirstOrDefault().Activate();
+
+            this.accountsList.Items.Refresh();
+        }
+
         private void ShowSettings(object sender, RoutedEventArgs e)
         {
             var window = new SettingsWindow(this.settings)
@@ -56,6 +85,7 @@ namespace ClipTweet.Windows
             };
 
             window.ShowDialog();
+            LoadAccounts();
         }
 
         private void ShowWindow()
