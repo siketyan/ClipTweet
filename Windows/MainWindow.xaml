@@ -17,7 +17,7 @@
                 <Label Foreground="#FFF" FontSize="15" Margin="7,1">ClipTweet</Label>
                 <Button DockPanel.Dock="Right" Width="32" Click="CloseWindow"
                         Style="{StaticResource WindowCaptionButtonStyle}"></Button>
-                <Button DockPanel.Dock="Right" Width="32"
+                <Button DockPanel.Dock="Right" Width="32" Click="ShowSettings"
                         Style="{StaticResource WindowCaptionButtonStyle}"></Button>
             </DockPanel>
             <ListBox DockPanel.Dock="Top" Height="64" BorderThickness="0"

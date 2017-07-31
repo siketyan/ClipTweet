@@ -17,12 +17,15 @@ namespace ClipTweet.Windows
     public partial class MainWindow : Window
     {
         public ObservableCollection<Image> Images { get; set; }
+
         private ClipboardWatcher watcher;
+        private Settings settings;
 
         public MainWindow()
         {
             InitializeComponent();
 
+            this.settings = Settings.Open();
             this.Images = new ObservableCollection<Image>();
             this.DataContext = this;
         }
@@ -43,6 +46,16 @@ namespace ClipTweet.Windows
                     i => i.Equals(image)
                 ).FirstOrDefault()
             );
+        }
+
+        private void ShowSettings(object sender, RoutedEventArgs e)
+        {
+            var window = new SettingsWindow(this.settings)
+            {
+                Owner = this
+            };
+
+            window.ShowDialog();
         }
 
         private void ShowWindow()
