@@ -1,0 +1,96 @@
+﻿<Window x:Class="ClipTweet.Windows.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Settings - ClipTweet" Height="442" Width="321" Topmost="True"
+        BorderBrush="#39F" BorderThickness="1" ResizeMode="NoResize"
+        SizeToContent="Height" WindowStartupLocation="CenterOwner">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="32" CornerRadius="3" GlassFrameThickness="1"
+                      ResizeBorderThickness="8" UseAeroCaptionButtons="False" />
+    </WindowChrome.WindowChrome>
+    <Grid x:Name="LayoutRoot">
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Background="#3399FF" Height="32">
+                <Label Foreground="#FFF" FontSize="15" Margin="7,1">Settings</Label>
+                <Button DockPanel.Dock="Right" Width="32" Click="CloseWindow"
+                        Style="{StaticResource WindowCaptionButtonStyle}"></Button>
+            </DockPanel>
+            <StackPanel Margin="15,10,15,15">
+                <Label>Accounts</Label>
+                <ListBox DockPanel.Dock="Top" Height="60" BorderThickness="0"
+                         ItemContainerStyle="{StaticResource ListBoxDisableSelectStyle}"
+                         ItemsPanel="{StaticResource ListBoxHorizontalTemplate}"
+                         ItemsSource="{Binding Accounts}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="48" Height="48" Margin="3,0">
+                                <Ellipse Width="48" Height="48" Cursor="Hand">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding ImageUrl}" />
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <Button Width="15" Height="15" Cursor="Hand" Tag="{Binding Id}"
+                                        VerticalAlignment="Top" HorizontalAlignment="Right"
+                                        Click="DeleteAccount">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Border Background="#333">
+                                                <Label Foreground="#FFF" FontSize="16" Padding="0" Margin="2,-5">×</Label>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Button Click="AddAccount">Add...</Button>
+                <Label Margin="0,10,0,0">New image handling</Label>
+                <ComboBox x:Name="newImageHandling">
+                    <ComboBoxItem>Add image</ComboBoxItem>
+                    <ComboBoxItem>Clear images list, add image</ComboBoxItem>
+                    <ComboBoxItem>Clear images list and tweet text, add image</ComboBoxItem>
+                </ComboBox>
+                <Label Margin="0,10,0,0">Window location</Label>
+                <ComboBox x:Name="windowLocation">
+                    <ComboBoxItem>Top left</ComboBoxItem>
+                    <ComboBoxItem>Top right</ComboBoxItem>
+                    <ComboBoxItem>Bottom left</ComboBoxItem>
+                    <ComboBoxItem>Bottom right</ComboBoxItem>
+                </ComboBox>
+                <Label Margin="0,10,0,0">Window screen</Label>
+                <ComboBox x:Name="windowScreen" />
+                <Label Margin="0,10,0,0">Window margin</Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*" />
+                        <ColumnDefinition Width="8*" />
+                    </Grid.ColumnDefinitions>
+
+                    <DockPanel Grid.Column="0">
+                        <Label>Vertical:</Label>
+                        <Label DockPanel.Dock="Right">px,</Label>
+                        <TextBox x:Name="verticalMargin"
+                                 PreviewTextInput="ParseMargin"
+                                 DataObject.Pasting="DisablePaste"
+                                 HorizontalContentAlignment="Right"
+                                 InputMethod.IsInputMethodEnabled="False" />
+                    </DockPanel>
+
+                    <DockPanel Grid.Column="1">
+                        <Label>Horizontal:</Label>
+                        <Label DockPanel.Dock="Right">px,</Label>
+                        <TextBox x:Name="horizontalMargin"
+                                 PreviewTextInput="ParseMargin"
+                                 DataObject.Pasting="DisablePaste"
+                                 HorizontalContentAlignment="Right"
+                                 InputMethod.IsInputMethodEnabled="False" />
+                    </DockPanel>
+                </Grid>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

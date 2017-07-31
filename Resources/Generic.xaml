@@ -40,6 +40,13 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="BorderBrush" Value="#E6E6E6" />
+        <Setter Property="Foreground" Value="#555" />
+        <Setter Property="SelectionBrush" Value="#39F" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
     
     <Style x:Key="SplashScreenTextStyle" TargetType="{x:Type Label}">
         <Setter Property="FontFamily" Value="Segoe UI Light" />

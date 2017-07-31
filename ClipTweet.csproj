@@ -66,13 +66,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Enums\WindowLocation.cs" />
     <Compile Include="Objects\Account.cs" />
     <Compile Include="Objects\Image.cs" />
     <Compile Include="Resources\TwitterKeys.cs" />
     <Compile Include="Utilities\BitmapSourceUtility.cs" />
     <Compile Include="Utilities\ClipboardWatcher.cs" />
+    <Compile Include="Utilities\EnumUtility.cs" />
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\TwitterAuthWindow.xaml.cs">
       <DependentUpon>TwitterAuthWindow.xaml</DependentUpon>
@@ -115,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
