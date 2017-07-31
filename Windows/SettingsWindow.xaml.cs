@@ -81,11 +81,13 @@ namespace ClipTweet.Windows
         private void DeleteAccount(object sender, RoutedEventArgs e)
         {
             var id = (long)((Button)sender).Tag;
-            this.Accounts.Remove(
-                this.Accounts
-                    .Where(a => a.Id == id)
-                    .FirstOrDefault()
-            );
+            var account = this.Accounts
+                              .Where(a => a.Id == id)
+                              .FirstOrDefault();
+
+            this.Accounts.Remove(account);
+            this.settings.Accounts.Remove(account);
+            this.settings.Save();
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
