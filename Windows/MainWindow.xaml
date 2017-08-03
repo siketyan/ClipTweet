@@ -82,12 +82,13 @@
                 <Grid>
                     <Label x:Name="placeHolder" Foreground="#777">ツイート...</Label>
                     <TextBox x:Name="text" Background="Transparent" Padding="5" BorderThickness="0"
+                             VerticalContentAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap"
                              GotFocus="OnTextFocused" LostFocus="OnTextUnFocused" />
                 </Grid>
             </DockPanel>
         </DockPanel>
 
-        <Grid x:Name="splashScreen" Background="#39F">
+        <Grid x:Name="splashScreen" Background="#39F" Opacity="0">
             <StackPanel VerticalAlignment="Center">
                 <Label Style="{StaticResource SplashScreenTextStyle}" FontSize="28">ClipTweet</Label>
                 <Label Style="{StaticResource SplashScreenTextStyle}" FontSize="14">Initializing...</Label>
