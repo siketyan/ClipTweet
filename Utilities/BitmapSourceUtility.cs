@@ -12,7 +12,7 @@ namespace ClipTweet.Utilities
             {
                 try
                 {
-                    var encoder = new BmpBitmapEncoder();
+                    var encoder = new JpegBitmapEncoder();
                     encoder.Frames.Add(BitmapFrame.Create(img));
                     using (var stream = new MemoryStream())
                     {

@@ -1,6 +1,7 @@
 ﻿using ClipTweet.Objects;
 using ClipTweet.Utilities;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -40,6 +41,19 @@ namespace ClipTweet.Windows
             this.watcher.ClipboardChanged += new EventHandler(OnClipboardChanged);
             this.splashScreen.Visibility = Visibility.Collapsed;
             CloseWindow();
+        }
+
+        private void Tweet(object sender, RoutedEventArgs e)
+        {
+            var account = this.Accounts.Where(a => a.IsActive).FirstOrDefault();
+            var mediaIds = new List<long>();
+            foreach (var image in this.Images)
+            {
+                var result = account.Token.Media.Upload(image.Source.ToBytes());
+                mediaIds.Add(result.MediaId);
+            }
+
+            account.Token.Statuses.Update(this.text.Text, media_ids: mediaIds);
         }
         
         private void DeleteImage(object sender, RoutedEventArgs e)

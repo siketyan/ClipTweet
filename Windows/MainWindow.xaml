@@ -70,7 +70,7 @@
             <DockPanel Margin="15,5,15,10">
                 <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
                     <Label x:Name="counter" VerticalContentAlignment="Center">140</Label>
-                    <Button DockPanel.Dock="Right" Cursor="Hand">
+                    <Button DockPanel.Dock="Right" Cursor="Hand" Click="Tweet">
                         <Button.Template>
                             <ControlTemplate>
                                 <Label FontFamily="../Resources/#Material Icons"

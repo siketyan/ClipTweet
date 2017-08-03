@@ -16,6 +16,12 @@ namespace ClipTweet
             base.OnStartup(e);
 
             this.Settings = Settings.Open();
+            foreach (var account in this.Settings.Accounts)
+            {
+                account.Init();
+            }
+
+            this.Settings.Save();
 
             new MainWindow().Show();
         }

@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using ClipTweet.Resources;
+using CoreTweet;
+using Newtonsoft.Json;
 
 namespace ClipTweet.Objects
 {
@@ -24,6 +26,18 @@ namespace ClipTweet.Objects
         /// </summary>
         [JsonIgnore]
         public string RingColor { get; set; } = DEFAULT_RING;
+
+        /// <summary>
+        /// Twitterアカウントのトークン
+        /// </summary>
+        [JsonIgnore]
+        public Tokens Token { get; private set; }
+
+        /// <summary>
+        /// Twitterアカウントのユーザ情報。
+        /// </summary>
+        [JsonIgnore]
+        public User User { get; private set; }
 
 
         /// <summary>
@@ -69,6 +83,20 @@ namespace ClipTweet.Objects
             }
         }
 
+
+        public void Init()
+        {
+            this.Token = Tokens.Create(
+                TwitterKeys.CONSUMER_KEY,
+                TwitterKeys.CONSUMER_SECRET,
+                this.AccessToken,
+                this.AccessTokenSecret
+            );
+
+            this.User = this.Token.Account.VerifyCredentials();
+            this.Name = this.User.Name;
+            this.ImageUrl = this.User.ProfileImageUrlHttps;
+        }
 
         /// <summary>
         /// アカウントをアクティブにする
